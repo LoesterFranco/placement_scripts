@@ -17,6 +17,8 @@ for input_file in $input_files; do
     kl_sol_file_path="sol_files/${prefix}_kl.json"
     fm_sol_file_path="sol_files/${prefix}_fm.json"
 
+    echo "Running on $prefix"
+
 
     kl_img_file_path="output_images/${prefix}_kl.png"
     fm_img_file_path="output_images/${prefix}_fm.png"

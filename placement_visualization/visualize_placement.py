@@ -34,7 +34,7 @@ def find_optimal_edges(net):
         
     return res
 
-def draw(height, width, module_positions, nets):
+def draw(height, width, module_positions, nets, percent_nets, colors):
     
     def cell_center(i, j):
         return (2 * i + 1) / (2 * height), (2 * j + 1) / (2 * width)
@@ -73,13 +73,13 @@ def draw(height, width, module_positions, nets):
 
     for i, net in enumerate(nets):
         
-        if random.random() > 1:
+        if random.random() > percent_nets / 100.0:
             continue
         
         edges = find_optimal_edges(net)
 
-        color_idx = random.randint(0, len(xkcd_colors) - 1)
-        color='xkcd:{}'.format(xkcd_colors[color_idx])
+        color_idx = random.randint(0, len(colors) - 1)
+        color='xkcd:{}'.format(colors[color_idx])
         
         for edge in edges:
             sx = module_positions[str(edge[0])]["x"]
@@ -107,7 +107,7 @@ def main(input_filepath, sol_filepath, percent_nets, colors, img_path):
 
     nets = input_data["nets"]
 
-    plt = draw(height, width, sol_data, nets)
+    plt = draw(height, width, sol_data, nets, percent_nets, colors)
 
     plt.savefig(img_path, bbox_inches='tight')
 
